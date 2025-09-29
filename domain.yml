@@ -8,6 +8,27 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - order_food
+
+slots:
+  item:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: item
+  quantity:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: quantity
+  price:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: price
+
+actions:
+  - action_order_food_json
 
 responses:
   utter_greet:
@@ -28,6 +49,7 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
 
 session_config:
   session_expiration_time: 60

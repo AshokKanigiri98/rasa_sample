@@ -11,3 +11,8 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: custom
+  steps:
+  - intent: order_food
+  - action: action_order_food_json

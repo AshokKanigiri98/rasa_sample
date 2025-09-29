@@ -89,3 +89,9 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: order_food
+  examples: |
+    - 1 plate dosa
+    - 2 dosas
+    - 3 idlis
