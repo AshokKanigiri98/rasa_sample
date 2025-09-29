@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-from data.utils.menu_utils import extract_item
+from data.utils.menu_utils import extract_item, MENU_PRICES
 from data.utils.num_utils import extract_quantity
 
 
@@ -17,12 +17,12 @@ class ActionOrderItem(Action):
         user_message = tracker.latest_message.get("text", "")
         quantity = extract_quantity(user_message)
         item = extract_item(user_message)
-        price_per_item = 50  # You can replace this with a dynamic lookup from menu
+        price_per_item = MENU_PRICES.get(item.lower()) * quantity
 
         response = {
-            "recipient_id": tracker.sender_id,
             "custom": {
-                "items": [item, quantity, price_per_item]
+                "items": [item, quantity, price_per_item],
+                "cart_value": 0,
             }
         }
 

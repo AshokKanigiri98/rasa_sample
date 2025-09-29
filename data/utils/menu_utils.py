@@ -9,6 +9,15 @@ MENU_SYNONYMS = {
     "upma": ["upma", "upmaa", "upmaa", "upmu", "upm"]
 }
 
+MENU_PRICES = {
+    "dosa": 30,
+    "idly": 30,
+    "vada": 40,
+    "upma": 40,
+    "masala dosa": 40,
+}
+
+
 
 # Fuzzy match menu items
 def extract_item(text: str) -> str:
