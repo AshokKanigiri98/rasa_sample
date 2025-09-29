@@ -5,6 +5,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from data.utils.menu_utils import extract_item, MENU_PRICES
 from data.utils.num_utils import extract_quantity
 
+
 class ActionOrderItem(Action):
 
     def name(self) -> Text:
@@ -31,14 +32,16 @@ class ActionOrderItem(Action):
             price_per_item = MENU_PRICES.get(item.lower())
             total_item_price = price_per_item * quantity
 
-            items_list.append([item, quantity, price_per_item])
+            items_list.append({
+                "item": item,
+                "quantity": quantity,
+                "price": price_per_item
+            })
             cart_value += total_item_price
 
         response = {
-            "custom": {
-                "items": items_list,
-                "cart_value": cart_value
-            }
+            "items": items_list,
+            "cart_value": cart_value
         }
 
         dispatcher.utter_message(json_message=response)
