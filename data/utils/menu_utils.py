@@ -22,8 +22,9 @@ MENU_PRICES = {
 # Fuzzy match menu items
 def extract_item(text: str) -> str:
     text_tokens = text.lower().split()
-    best_item = "item"
+    best_item = ""
     highest_score = 0
+    MIN_SCORE = 70  # minimum confidence to accept a match
 
     for token in text_tokens:
         for item, synonyms in MENU_SYNONYMS.items():
@@ -31,4 +32,7 @@ def extract_item(text: str) -> str:
             if score > highest_score:
                 highest_score = score
                 best_item = item
+
+    if highest_score < MIN_SCORE:
+        return ""  # return empty if no confident match
     return best_item

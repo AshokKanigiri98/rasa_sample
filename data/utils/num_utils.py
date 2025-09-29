@@ -42,5 +42,5 @@ def extract_quantity(text: str) -> int:
                 print(highest_score)
         if highest_score >= 75:  # threshold for matching
             return best_match
-    return 1  # default quantity
+    return 1
 
